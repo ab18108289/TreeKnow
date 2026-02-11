@@ -1,0 +1,777 @@
+/**
+ * 树知 TreeKnow - 简洁风格UI
+ * 极简设计，流畅体验
+ */
+
+/* ==================== 变量 ==================== */
+:root {
+  --tk-primary: #22c55e;
+  --tk-primary-light: #f0fdf4;
+  --tk-bg: #FAFAFA;
+  --tk-white: #FFFFFF;
+  --tk-text: #1F2937;
+  --tk-text-light: #6B7280;
+  --tk-border: #E5E7EB;
+  --tk-hover: #F3F4F6;
+  --tk-text-secondary: #9CA3AF;
+  --tk-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --tk-radius: 8px;
+}
+
+/* GPU 加速 */
+#treeknow-sidebar,
+.tk-node-content,
+.tk-tree-children,
+.tk-expand-btn svg,
+.tk-ghost-element {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* 深色模式 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tk-bg: #111827;
+    --tk-white: #1F2937;
+    --tk-text: #F9FAFB;
+    --tk-text-light: #9CA3AF;
+    --tk-border: #374151;
+    --tk-hover: #374151;
+  }
+}
+
+/* ==================== 页面边距过渡（侧边栏推开页面） ==================== */
+html, body {
+  transition: margin-right 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+body > *:not(#treeknow-sidebar) {
+  transition: max-width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==================== 侧边栏容器 ==================== */
+#treeknow-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background: var(--tk-bg);
+  border-left: 1px solid var(--tk-border);
+  z-index: 2147483647;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: var(--tk-text);
+  transition: width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: width;
+}
+
+#treeknow-sidebar.collapsed {
+  width: 48px;
+}
+
+#treeknow-sidebar.collapsed .tk-header-title,
+#treeknow-sidebar.collapsed .tk-switch,
+#treeknow-sidebar.collapsed .tk-search-container,
+#treeknow-sidebar.collapsed .tk-tree-selector,
+#treeknow-sidebar.collapsed .tk-tree-container,
+#treeknow-sidebar.collapsed .tk-footer {
+  display: none;
+}
+
+#treeknow-sidebar.collapsed .tk-header {
+  justify-content: center;
+}
+
+#treeknow-sidebar.collapsed .tk-header-actions {
+  margin-left: 0;
+}
+
+#treeknow-sidebar.collapsed .tk-toggle-btn {
+  width: 32px;
+  height: 32px;
+}
+
+/* ==================== 头部 ==================== */
+.tk-header {
+  height: 48px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--tk-white);
+  border-bottom: 1px solid var(--tk-border);
+}
+
+.tk-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tk-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.tk-logo svg {
+  width: 100%;
+  height: 100%;
+}
+
+.tk-header-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--tk-text);
+}
+
+.tk-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 开关 */
+.tk-switch {
+  width: 36px;
+  height: 20px;
+  background: var(--tk-border);
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tk-switch.active {
+  background: var(--tk-primary);
+}
+
+.tk-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  transition: left 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.tk-switch.active::after {
+  left: 18px;
+}
+
+/* 按钮 */
+.tk-toggle-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--tk-text-light);
+}
+
+.tk-toggle-btn:hover {
+  background: var(--tk-hover);
+  color: var(--tk-text);
+}
+
+.tk-toggle-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.tk-action-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tk-text-secondary);
+  transition: all 0.15s ease;
+}
+
+.tk-action-btn:hover {
+  background: var(--tk-hover);
+  color: var(--tk-text);
+}
+
+.tk-action-btn.active {
+  color: var(--tk-primary);
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.tk-action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ==================== 搜索框 ==================== */
+.tk-search-container {
+  padding: 8px 12px;
+  background: var(--tk-white);
+}
+
+.tk-search-box {
+  position: relative;
+}
+
+.tk-search-input {
+  width: 100%;
+  height: 32px;
+  padding: 0 10px 0 32px;
+  background: var(--tk-bg);
+  border: 1px solid var(--tk-border);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--tk-text);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.tk-search-input:focus {
+  border-color: var(--tk-primary);
+}
+
+.tk-search-input::placeholder {
+  color: var(--tk-text-light);
+}
+
+.tk-search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  color: var(--tk-text-light);
+}
+
+/* ==================== 思维树选择器 ==================== */
+.tk-tree-selector {
+  padding: 0 12px 8px;
+  background: var(--tk-white);
+  border-bottom: 1px solid var(--tk-border);
+}
+
+.tk-tree-select {
+  width: 100%;
+  height: 32px;
+  padding: 0 28px 0 10px;
+  background: var(--tk-bg);
+  border: 1px solid var(--tk-border);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--tk-text);
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+/* ==================== 思维树列表 ==================== */
+.tk-tree-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.tk-tree-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.tk-tree-container::-webkit-scrollbar-thumb {
+  background: var(--tk-border);
+  border-radius: 2px;
+}
+
+.tk-tree-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==================== 节点样式 ==================== */
+.tk-tree-node {
+  margin-bottom: 4px;
+}
+
+.tk-node-content {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--tk-white);
+  border: 1px solid var(--tk-border);
+  border-radius: var(--tk-radius);
+  cursor: pointer;
+  transition: border-color 0.1s ease-out, box-shadow 0.1s ease-out, background-color 0.1s ease-out, opacity 0.1s ease-out;
+  will-change: border-color, box-shadow, opacity;
+}
+
+.tk-node-content:hover {
+  border-color: var(--tk-primary);
+  box-shadow: var(--tk-shadow);
+}
+
+.tk-node-content:active {
+  transform: scale(0.99);
+}
+
+/* 主节点 - 用户问话 */
+.tk-node-content.main-node,
+.tk-node-content.role-user {
+  background: var(--tk-white);
+  border-left: 3px solid var(--tk-primary);
+}
+
+/* 子节点 */
+.tk-node-content.child-node {
+  background: var(--tk-bg);
+  margin-left: 16px;
+}
+
+/* 展开按钮 */
+.tk-expand-btn {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--tk-text-light);
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.tk-expand-btn:hover {
+  background: var(--tk-hover);
+  color: var(--tk-text);
+}
+
+.tk-expand-btn svg {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.tk-expand-btn.expanded svg {
+  transform: rotate(90deg);
+}
+
+/* 节点标题 */
+.tk-node-title {
+  flex: 1;
+  font-size: 13px;
+  color: var(--tk-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.tk-node-title.editing {
+  background: var(--tk-bg);
+  border: 1px solid var(--tk-primary);
+  border-radius: 4px;
+  padding: 2px 6px;
+  outline: none;
+  white-space: normal;
+}
+
+/* 操作按钮 */
+.tk-node-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.08s ease-out;
+}
+
+.tk-node-content:hover .tk-node-actions {
+  opacity: 1;
+}
+
+.tk-node-actions button {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--tk-text-light);
+}
+
+.tk-node-actions button:hover {
+  background: var(--tk-hover);
+  color: var(--tk-text);
+}
+
+.tk-node-actions button.delete:hover {
+  color: #EF4444;
+}
+
+.tk-node-actions button svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* 子节点容器 */
+.tk-tree-children {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0 0 20px;
+  overflow: hidden;
+  will-change: max-height, opacity;
+}
+
+.tk-tree-children.expanded {
+  max-height: 9999px;
+  opacity: 1;
+  transition: max-height 0.15s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.1s ease-out, padding 0.1s ease-out;
+}
+
+.tk-tree-children.collapsed {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  pointer-events: none;
+  transition: max-height 0.12s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.08s ease-out, padding 0.08s ease-out;
+}
+
+/* ==================== 拖拽状态 ==================== */
+.tk-node-content.dragging {
+  opacity: 0.4;
+  transform: scale(0.98);
+}
+
+.tk-node-content.drag-over {
+  border: 2px dashed var(--tk-primary);
+  background: var(--tk-primary-light);
+  transform: scale(1.01);
+}
+
+.tk-drop-indicator {
+  height: 2px;
+  background: var(--tk-primary);
+  border-radius: 1px;
+  margin: 2px 0;
+  animation: tk-pulse 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes tk-pulse {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* 拖拽幽灵元素 */
+.tk-ghost-element {
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0.9;
+  transform: scale(1.02) translateZ(0);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* ==================== 底部 ==================== */
+.tk-footer {
+  padding: 8px 12px;
+  background: var(--tk-white);
+  border-top: 1px solid var(--tk-border);
+}
+
+.tk-footer-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.tk-footer-btn {
+  flex: 1;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: var(--tk-bg);
+  border: 1px solid var(--tk-border);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--tk-text);
+  cursor: pointer;
+  transition: border-color 0.1s ease-out, color 0.1s ease-out, background 0.1s ease-out;
+}
+
+.tk-footer-btn:hover {
+  border-color: var(--tk-primary);
+  color: var(--tk-primary);
+}
+
+.tk-footer-btn:active {
+  transform: scale(0.97);
+}
+
+.tk-footer-btn.primary {
+  background: var(--tk-primary);
+  border-color: var(--tk-primary);
+  color: white;
+}
+
+.tk-footer-btn.primary:hover {
+  background: #16a34a;
+}
+
+.tk-footer-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ==================== 空状态 ==================== */
+.tk-empty-state {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--tk-text-light);
+}
+
+.tk-empty-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 12px;
+  color: var(--tk-border);
+}
+
+.tk-empty-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tk-text);
+  margin-bottom: 4px;
+}
+
+.tk-empty-desc {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ==================== 右键菜单 ==================== */
+.tk-context-menu {
+  position: fixed;
+  min-width: 140px;
+  background: var(--tk-white);
+  border: 1px solid var(--tk-border);
+  border-radius: var(--tk-radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 4px;
+  z-index: 10000;
+}
+
+.tk-context-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: var(--tk-text);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tk-context-menu-item:hover {
+  background: var(--tk-hover);
+}
+
+.tk-context-menu-item.danger:hover {
+  background: #FEF2F2;
+  color: #EF4444;
+}
+
+.tk-context-menu-item svg {
+  width: 14px;
+  height: 14px;
+}
+
+.tk-context-menu-divider {
+  height: 1px;
+  background: var(--tk-border);
+  margin: 4px 0;
+}
+
+/* ==================== Toast ==================== */
+.tk-toast {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  padding: 10px 20px;
+  background: var(--tk-text);
+  color: white;
+  font-size: 13px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 10002;
+  animation: tk-toast-in 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes tk-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.tk-toast.success { background: #10B981; }
+.tk-toast.error { background: #EF4444; }
+.tk-toast.warning { background: #F59E0B; }
+
+/* ==================== 模态框 ==================== */
+.tk-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+}
+
+.tk-modal {
+  width: 320px;
+  background: var(--tk-white);
+  border-radius: var(--tk-radius);
+  overflow: hidden;
+}
+
+.tk-modal-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--tk-border);
+}
+
+.tk-modal-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.tk-modal-body {
+  padding: 16px;
+}
+
+.tk-modal-input {
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--tk-border);
+  border-radius: 6px;
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.tk-modal-input:focus {
+  border-color: var(--tk-primary);
+}
+
+.tk-modal-footer {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  border-top: 1px solid var(--tk-border);
+}
+
+.tk-modal-btn {
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid var(--tk-border);
+  background: var(--tk-white);
+}
+
+.tk-modal-btn.primary {
+  background: var(--tk-primary);
+  border-color: var(--tk-primary);
+  color: white;
+}
+
+/* ==================== 搜索高亮 ==================== */
+.tk-node-content.search-match {
+  border-color: var(--tk-primary);
+  background: var(--tk-primary-light);
+}
+
+.tk-node-title .highlight {
+  background: #FEF08A;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* ==================== 角色标签 ==================== */
+.tk-role-badge {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+.tk-role-badge.ai {
+  background: #DBEAFE;
+  color: #1D4ED8;
+}
+
+/* ==================== 工具提示 ==================== */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  font-size: 11px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s;
+  margin-top: 4px;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+}

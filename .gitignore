@@ -1,0 +1,14 @@
+# 打包输出
+dist/
+treeknow-chrome-store.zip
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
