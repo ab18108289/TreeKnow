@@ -1,208 +1,138 @@
+<div align="center">
+
+<img src="icons/icon.svg" width="80" height="80" alt="TreeKnow">
+
 # 树知 TreeKnow
 
-> AI对话思维树管理工具 - 捕获AI对话，构建知识树
+**让每一次 AI 对话，都长成知识树。**
 
-一个高颜值、丝滑拖拽交互的Chrome插件，支持自动捕获AI对话并生成思维树，帮助你更好地整理和管理AI对话内容。
+自动捕获 AI 对话内容，以思维树形式组织管理，数据 100% 本地存储。
 
-## 功能特性
+[![License: MIT](https://img.shields.io/badge/License-MIT-10b981.svg)](LICENSE)
+[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-4285f4?logo=googlechrome&logoColor=white)](https://github.com/ab18108289/TreeKnow)
+[![GitHub stars](https://img.shields.io/github/stars/ab18108289/TreeKnow?style=flat&color=10b981)](https://github.com/ab18108289/TreeKnow/stargazers)
 
-### 核心功能
-- **AI对话捕获**：自动捕获豆包、通义千问、DeepSeek等AI平台的对话内容
-- **思维树管理**：将对话以树形结构组织，支持多层级节点
-- **丝滑拖拽**：支持节点自由拖拽，调整层级和排序，对标Megi思维树体验
-- **本地存储**：使用IndexedDB本地存储，数据安全不上传
+[安装使用](#-安装) · [功能特性](#-功能特性) · [支持平台](#-支持平台) · [隐私政策](privacy-policy.md)
 
-### UI/UX
-- **极简现代设计**：干净清爽的界面，符合Chrome插件设计规范
-- **悬浮侧边栏**：固定在页面右侧，320px宽度，支持折叠
-- **丰富交互反馈**：拖拽高亮、插入指示线、平滑动画
-- **深色模式支持**：自动适配系统深色/浅色模式
+</div>
 
-### 节点操作
-- 双击编辑节点标题
-- 右键菜单（删除/重命名/折叠）
-- 点击展开/折叠子节点
-- 拖拽调整节点位置和层级
-- 搜索节点并高亮匹配
+---
 
-### 数据管理
-- 新建/切换思维树
-- 导出为JSON文件
-- 导入JSON数据
-- 清空所有数据（二次确认）
+## ✨ 功能特性
 
-## 支持平台
+🔄 **自动捕获** — 打开 AI 对话页面即自动工作，实时捕获每一个提问，无需手动操作
 
-| 平台 | 网址 | 状态 |
-|------|------|------|
-| 豆包 | doubao.com | ✅ 支持 |
-| 通义千问 | tongyi.aliyun.com | ✅ 支持 |
-| DeepSeek | chat.deepseek.com | ✅ 支持 |
+🌳 **思维树管理** — 对话自动组织为树形结构，层次清晰，一目了然
 
-## 安装步骤
+🖱️ **拖拽排序** — 自由拖拽节点调整位置和层级，右键编辑、重命名
 
-### 方法一：开发者模式加载
+📦 **导入导出** — 一键导出 JSON 数据，支持跨设备导入，知识永不丢失
 
-1. 下载或克隆本项目到本地
-2. 打开Chrome浏览器，进入扩展程序页面
-   - 地址栏输入：`chrome://extensions/`
-   - 或：菜单 → 更多工具 → 扩展程序
-3. 开启右上角「开发者模式」
-4. 点击「加载已解压的扩展程序」
-5. 选择项目根目录（包含`manifest.json`的文件夹）
-6. 插件安装完成！
+🔒 **隐私优先** — 所有数据使用 IndexedDB 存储在浏览器本地，零上传、零追踪
 
-### 方法二：Edge浏览器
+🎨 **优雅设计** — 极简侧边栏，页面内容自动推移，不遮挡原页面
 
-1. 打开Edge浏览器，进入扩展程序页面
-   - 地址栏输入：`edge://extensions/`
-2. 开启左侧「开发人员模式」
-3. 点击「加载解压缩的扩展」
-4. 选择项目根目录
-5. 安装完成！
+## 🌐 支持平台
 
-## 使用说明
+| | 平台 | 网址 |
+|:---:|------|------|
+| <img src="website/logos/deepseek.png" width="20"> | **DeepSeek** | chat.deepseek.com |
+| <img src="website/logos/doubao.png" width="20"> | **豆包** | doubao.com |
+| <img src="website/logos/tongyi.png" width="20"> | **通义千问** | tongyi.aliyun.com |
+| <img src="website/logos/kimi.ico" width="20"> | **Kimi** | kimi.moonshot.cn |
+| <img src="website/logos/yuanbao.ico" width="20"> | **腾讯元宝** | yuanbao.tencent.com |
+| <img src="website/logos/yiyan.png" width="20"> | **文心一言** | yiyan.baidu.com |
 
-### 基本使用
+> 更多平台持续接入中，欢迎 [提交 Issue](https://github.com/ab18108289/TreeKnow/issues) 告诉我们你想支持的平台。
 
-1. **打开AI平台**：访问豆包、通义千问或DeepSeek
-2. **查看侧边栏**：页面右侧会自动显示树知侧边栏
-3. **开启捕获**：点击头部的开关按钮开启自动捕获
-4. **对话生成**：与AI对话时，内容会自动生成为思维树节点
+## 📦 安装
 
-### 节点操作
+### 从 Chrome 应用商店安装（推荐）
 
-- **编辑标题**：双击节点标题进行编辑，Enter保存，Esc取消
-- **展开/折叠**：点击节点左侧的「+/-」按钮
-- **右键菜单**：右键点击节点显示操作菜单
-- **拖拽移动**：按住节点拖动可调整位置和层级
+> 审核上架中，敬请期待。
 
-### 拖拽规则
+### 手动安装
 
-- 拖拽到节点**上方**：放置在目标节点之前
-- 拖拽到节点**中间**：成为目标节点的子节点
-- 拖拽到节点**下方**：放置在目标节点之后
-- **禁止操作**：不能将节点拖入自己的子节点中
+```bash
+git clone https://github.com/ab18108289/TreeKnow.git
+```
 
-### 数据管理
+1. 打开浏览器扩展页面
+   - Chrome: `chrome://extensions/`
+   - Edge: `edge://extensions/`
+2. 开启 **开发者模式**
+3. 点击 **加载已解压的扩展程序**
+4. 选择克隆下来的项目根目录
+5. 完成 ✅
 
-- **新建思维树**：点击底部「新建」按钮
-- **切换思维树**：使用顶部下拉选择器
-- **导出数据**：点击导出按钮，保存为JSON文件
-- **导入数据**：点击导入按钮，选择JSON文件
-- **清空数据**：点击清空按钮（需二次确认）
+## 🚀 使用方法
 
-## 项目结构
+1. 访问任意支持的 AI 对话平台
+2. 点击浏览器工具栏的 TreeKnow 图标，侧边栏会在页面右侧展开
+3. 正常与 AI 对话，提问会自动捕获为思维树节点
+4. 拖拽节点调整结构，双击编辑标题，右键查看更多操作
+
+## 🛠️ 技术栈
+
+| 技术 | 说明 |
+|------|------|
+| Manifest V3 | Chrome 扩展最新标准 |
+| 原生 JavaScript | 零框架依赖，轻量高性能 |
+| IndexedDB | 浏览器本地持久化存储 |
+| MutationObserver | 实时监听页面 DOM 变化 |
+
+## 📁 项目结构
 
 ```
-Tree/
-├── manifest.json          # 插件配置文件
-├── README.md              # 说明文档
-│
+TreeKnow/
+├── manifest.json            # 扩展配置
 ├── background/
-│   └── background.js      # 后台服务脚本
-│
+│   └── background.js        # Service Worker
 ├── content/
-│   └── content-script.js  # 内容脚本（注入页面）
-│
-├── popup/
-│   ├── popup.html         # 弹出页面
-│   └── popup.js           # 弹出页面脚本
-│
+│   └── content-script.js    # 内容脚本（侧边栏 + 对话监听）
 ├── lib/
-│   ├── db.js              # IndexedDB存储模块
-│   ├── tree.js            # 思维树渲染模块
-│   ├── drag.js            # 拖拽交互模块
-│   └── capture.js         # AI对话捕获模块
-│
+│   ├── capture.js           # AI 平台适配 & 对话捕获
+│   ├── tree.js              # 思维树渲染
+│   ├── drag.js              # 拖拽交互
+│   └── db.js                # IndexedDB 存储
 ├── styles/
-│   └── panel.css          # 侧边栏样式
-│
-└── icons/
-    └── icon.svg           # 插件图标
+│   └── panel.css            # 侧边栏样式
+├── icons/                   # 扩展图标
+└── website/                 # 产品官网
 ```
 
-## 技术栈
+## 🗺️ 路线图
 
-- **Manifest V3**：Chrome扩展最新标准
-- **原生JavaScript**：无框架依赖，性能优异
-- **IndexedDB**：本地数据持久化存储
-- **CSS3**：现代样式，支持CSS变量和动画
-- **MutationObserver**：监听页面DOM变化
-
-## 设计规范
-
-### 配色方案
-
-| 用途 | 色值 | 说明 |
-|------|------|------|
-| 主色 | #1677FF | 科技蓝 |
-| 背景 | #F5F7FA | 浅灰背景 |
-| 文字 | #333647 | 主要文字 |
-| 边框 | #E5E6EB | 分隔线 |
-| 悬停 | #E8F3FF | 交互反馈 |
-
-### 节点样式
-
-- **主节点**：蓝色背景(#1677FF)，白色文字，左侧8px蓝色竖条
-- **子节点**：白色背景，浅灰边框，左侧4px蓝色竖条
-- **层级缩进**：每层级缩进24px
-
-## 常见问题
-
-### Q: 侧边栏没有显示？
-
-A: 请确保：
-1. 当前页面是支持的AI平台
-2. 刷新页面重试
-3. 检查插件是否已启用
-
-### Q: 捕获不到对话内容？
-
-A: 可能的原因：
-1. 捕获开关未开启
-2. AI平台界面结构更新，需要更新插件
-3. 对话正在加载中，等待完成后会自动捕获
-
-### Q: 拖拽不生效？
-
-A: 请检查：
-1. 是否在节点内容区域拖拽（不是按钮区域）
-2. 目标位置是否合法（不能拖入自己的子节点）
-
-### Q: 数据丢失了？
-
-A: IndexedDB存储在浏览器本地：
-1. 清除浏览器数据会导致丢失
-2. 建议定期导出JSON备份
-3. 卸载插件不会清除数据
-
-### Q: 如何备份数据？
-
-A: 点击底部导出按钮，将思维树保存为JSON文件。需要时可通过导入功能恢复。
-
-## 更新日志
-
-### v1.0.0 (2024-XX-XX)
-- 初始版本发布
-- 支持豆包、通义千问、DeepSeek
-- 实现思维树基础功能
-- 丝滑拖拽交互
-- 本地数据存储
-
-## 开发计划
-
-- [ ] 支持更多AI平台（Kimi、文心一言等）
+- [x] 支持豆包、通义千问、DeepSeek
+- [x] 支持 Kimi、腾讯元宝、文心一言
+- [x] 侧边栏推移页面（不遮挡）
+- [x] 导入导出 JSON
 - [ ] 节点内容预览
-- [ ] 标签分类功能
-- [ ] 云端同步（可选）
+- [ ] 标签分类
+- [ ] 导出为 Markdown / XMind 格式
 - [ ] 快捷键支持
-- [ ] 导出为Markdown/Mind格式
+- [ ] 云端同步（可选）
 
-## 开源协议
+## 🤝 参与贡献
 
-MIT License
+欢迎提交 Issue 和 Pull Request。
 
-## 反馈与贡献
+1. Fork 本仓库
+2. 创建功能分支 (`git checkout -b feature/your-feature`)
+3. 提交修改 (`git commit -m 'Add your feature'`)
+4. 推送分支 (`git push origin feature/your-feature`)
+5. 创建 Pull Request
 
-如有问题或建议，欢迎提交Issue或Pull Request。
+## 📄 许可证
+
+[MIT License](LICENSE) © 2026 TreeKnow
+
+---
+
+<div align="center">
+
+**如果觉得有用，请给个 ⭐ Star 支持一下！**
+
+[报告问题](https://github.com/ab18108289/TreeKnow/issues) · [功能建议](https://github.com/ab18108289/TreeKnow/issues)
+
+</div>
