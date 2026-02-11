@@ -1,20 +1,22 @@
-<div align="center">
+<p align="center">
+  <img src="icons/icon.svg" width="80" height="80" alt="TreeKnow">
+</p>
 
-<img src="icons/icon.svg" width="80" height="80" alt="TreeKnow">
+<h1 align="center">树知 TreeKnow</h1>
 
-# 树知 TreeKnow
+<p align="center"><b>让每一次 AI 对话，都长成知识树。</b></p>
 
-**让每一次 AI 对话，都长成知识树。**
+<p align="center">自动捕获 AI 对话内容，以思维树形式组织管理，数据 100% 本地存储。</p>
 
-自动捕获 AI 对话内容，以思维树形式组织管理，数据 100% 本地存储。
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-10b981.svg" alt="MIT License"></a>
+  <a href="https://github.com/ab18108289/TreeKnow"><img src="https://img.shields.io/badge/Chrome-Extension-4285f4?logo=googlechrome&logoColor=white" alt="Chrome Extension"></a>
+  <a href="https://github.com/ab18108289/TreeKnow/stargazers"><img src="https://img.shields.io/github/stars/ab18108289/TreeKnow?style=flat&color=10b981" alt="GitHub stars"></a>
+</p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-10b981.svg)](LICENSE)
-[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-4285f4?logo=googlechrome&logoColor=white)](https://github.com/ab18108289/TreeKnow)
-[![GitHub stars](https://img.shields.io/github/stars/ab18108289/TreeKnow?style=flat&color=10b981)](https://github.com/ab18108289/TreeKnow/stargazers)
-
-[安装使用](#-安装) · [功能特性](#-功能特性) · [支持平台](#-支持平台) · [隐私政策](privacy-policy.md)
-
-</div>
+<p align="center">
+  <a href="#-安装">安装使用</a> · <a href="#-功能特性">功能特性</a> · <a href="#-支持平台">支持平台</a> · <a href="privacy-policy.md">隐私政策</a>
+</p>
 
 ---
 
@@ -129,10 +131,8 @@ TreeKnow/
 
 ---
 
-<div align="center">
+<p align="center"><b>如果觉得有用，请给个 ⭐ Star 支持一下！</b></p>
 
-**如果觉得有用，请给个 ⭐ Star 支持一下！**
-
-[报告问题](https://github.com/ab18108289/TreeKnow/issues) · [功能建议](https://github.com/ab18108289/TreeKnow/issues)
-
-</div>
+<p align="center">
+  <a href="https://github.com/ab18108289/TreeKnow/issues">报告问题</a> · <a href="https://github.com/ab18108289/TreeKnow/issues">功能建议</a>
+</p>
