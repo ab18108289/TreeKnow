@@ -38,12 +38,12 @@
 
 | | 平台 | 网址 |
 |:---:|------|------|
-| <img src="website/logos/deepseek.png" width="20"> | **DeepSeek** | chat.deepseek.com |
-| <img src="website/logos/doubao.png" width="20"> | **豆包** | doubao.com |
-| <img src="website/logos/tongyi.png" width="20"> | **通义千问** | tongyi.aliyun.com |
-| <img src="website/logos/kimi.ico" width="20"> | **Kimi** | kimi.moonshot.cn |
-| <img src="website/logos/yuanbao.ico" width="20"> | **腾讯元宝** | yuanbao.tencent.com |
-| <img src="website/logos/yiyan.png" width="20"> | **文心一言** | yiyan.baidu.com |
+| <img src="docs/logos/deepseek.png" width="20"> | **DeepSeek** | chat.deepseek.com |
+| <img src="docs/logos/doubao.png" width="20"> | **豆包** | doubao.com |
+| <img src="docs/logos/tongyi.png" width="20"> | **通义千问** | tongyi.aliyun.com |
+| <img src="docs/logos/kimi.ico" width="20"> | **Kimi** | kimi.moonshot.cn |
+| <img src="docs/logos/yuanbao.ico" width="20"> | **腾讯元宝** | yuanbao.tencent.com |
+| <img src="docs/logos/yiyan.png" width="20"> | **文心一言** | yiyan.baidu.com |
 
 > 更多平台持续接入中，欢迎 [提交 Issue](https://github.com/ab18108289/TreeKnow/issues) 告诉我们你想支持的平台。
 
@@ -100,7 +100,7 @@ TreeKnow/
 ├── styles/
 │   └── panel.css            # 侧边栏样式
 ├── icons/                   # 扩展图标
-└── website/                 # 产品官网
+└── docs/                    # 产品官网 (GitHub Pages)
 ```
 
 ## 🗺️ 路线图
